@@ -146,7 +146,16 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+                        <h1 id="a-comprehensive-guide-to-uefi-programming"><a class="header" href="#a-comprehensive-guide-to-uefi-programming">A Comprehensive Guide To UEFI Programming</a></h1>
+<p><em>by Natalia Cholewa</em></p>
+<p>UEFI has been <strong>the</strong> standard of PC firmware for over a decade now. Despite that, many of its design choices are... irritating at times, and its <a href="https://uefi.org/specifications">specification</a> doesn't help much either. This little book aims to act as a starting point for anyone wishing to write UEFI applications — mainly bootloaders. It explains the basics of the UEFI environment and the way it can be programmed.</p>
+<blockquote>
+<p><strong>Just so you know...</strong></p>
+<p>This book is very much in development. Not everything here is going to be correct, some information may be added, some may be removed, a lot if it may be missing, and in general require editing work to be more pleasant to go through. Thanks for reading, and take care ❤️</p>
+</blockquote>
+<h2 id="prerequisites"><a class="header" href="#prerequisites">Prerequisites</a></h2>
+<p>There are a few assumptions I will be making about you, dear reader. I won't be explaining basic systems programming concepts, like what &quot;kernel mode&quot;, &quot;paging&quot;, or &quot;interrupts&quot; are. That being said, I will do my best to make this guide as accessible as possible to everyone, regardless of their low-level programming knowledge. </p>
+<p>While the UEFI specification defines the standard for multiple architectures, I will be sticking to <strong>x86_64 only</strong> in this guide. Most of the information here will apply everywhere anyway, but keep this in mind.</p>
 <div style="break-before: page; page-break-before: always;"></div><h1 id="quick-overview-of-uefi"><a class="header" href="#quick-overview-of-uefi">Quick overview of UEFI</a></h1>
 <p>UEFI, or the <em>Unified Extensible Firmware Interface</em>, is a standardization of computer firmware. It's meant to replace old firmware designs, often referred to as the <em>legacy BIOS</em> or just the BIOS. There are many good reasons to get rid of the legacy stuff. The BIOS wasn't really standardized, its behavior varied across vendors, it required starting the bootloader in what's effectively an 8086 compatbility mode, and it abstracted hardware in a really poor way. The list of complaints can just keep growing.</p>
 <p>This specification tries to replace the BIOS with a well defined specification, allowing for programming in C or a C compatible language, and in general just being less of a pain... or at least that's the theory. In reality UEFI has a lot of issues, we still have cases of behavior varying between vendors, and whatever else. Criticisms of UEFI surely deserve a dedicated chapter.</p>
