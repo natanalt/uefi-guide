@@ -5,7 +5,7 @@ UEFI has been **the** standard of PC firmware for over a decade now. Despite tha
 
 > **Just so you know...**
 >
-> This book is very much in development. Not everything here is going to be correct, some information may be added and some may be removed. Thanks for reading, and take care ❤️
+> This book is very much in development. Not everything here is going to be correct, some information may be added, some may be removed, a lot if it may be missing, and in general require editing work to be more pleasant to go through. Thanks for reading, and take care ❤️
 
 ## Prerequisites
 There are a few assumptions I will be making about you, dear reader. I won't be explaining basic systems programming concepts, like what "kernel mode", "paging", or "interrupts" are. That being said, I will do my best to make this guide as accessible as possible to everyone, regardless of their low-level programming knowledge. 

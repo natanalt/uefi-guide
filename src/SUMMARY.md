@@ -1,8 +1,8 @@
 # Summary
 
-[Introduction](./introduction.md)
+[Introduction](./Introduction.md)
 
-- [Quick overview of UEFI]()
+- [Quick overview of UEFI](./1-QuickOverviewOfUEFI.md)
 - [Our first UEFI app]()
 - [Booting a UEFI application]()
   - [The Boot Manager]()
@@ -15,6 +15,7 @@
 - [`ExitBootServices` — the exit door]()
   - [Preparing for the trip]()
   - [Calling UEFI runtime services in a kernel]()
+- [Secure Boot]()
 
 [Appendix A: Compiling a C/C++ UEFI application]()
 [Appendix B: ...and doing it in other languages]()
