@@ -3,7 +3,7 @@
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
-        <title>Introduction - A Comprehensive Guide To UEFI Programming</title>
+        <title>Quick overview of UEFI - A Comprehensive Guide To UEFI Programming</title>
 
 
         <!-- Custom HTML head -->
@@ -81,7 +81,7 @@
 
         <nav id="sidebar" class="sidebar" aria-label="Table of contents">
             <div class="sidebar-scrollbox">
-                <ol class="chapter"><li class="chapter-item expanded affix "><a href="Introduction.html" class="active">Introduction</a></li><li class="chapter-item expanded "><a href="1-QuickOverviewOfUEFI.html"><strong aria-hidden="true">1.</strong> Quick overview of UEFI</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Our first UEFI app</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Booting a UEFI application</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> The Boot Manager</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.2.</strong> Creating boot entries</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.3.</strong> Booting from removable media</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Protocols and services</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Device and file paths</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> How UEFI represents physical devices</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> How to open a file</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> ExitBootServices — the exit door</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Preparing for the trip</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> Calling UEFI runtime services in a kernel</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Secure Boot</div></li><li class="chapter-item expanded affix "><div>Appendix A: Compiling a C/C++ UEFI application</div></li><li class="chapter-item expanded affix "><div>Appendix B: ...and doing it in other languages</div></li></ol>
+                <ol class="chapter"><li class="chapter-item expanded affix "><a href="Introduction.html">Introduction</a></li><li class="chapter-item expanded "><a href="1-QuickOverviewOfUEFI.html" class="active"><strong aria-hidden="true">1.</strong> Quick overview of UEFI</a></li><li class="chapter-item expanded "><div><strong aria-hidden="true">2.</strong> Our first UEFI app</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.</strong> Booting a UEFI application</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">3.1.</strong> The Boot Manager</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.2.</strong> Creating boot entries</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">3.3.</strong> Booting from removable media</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">4.</strong> Protocols and services</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.</strong> Device and file paths</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">5.1.</strong> How UEFI represents physical devices</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">5.2.</strong> How to open a file</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.</strong> ExitBootServices — the exit door</div></li><li><ol class="section"><li class="chapter-item expanded "><div><strong aria-hidden="true">6.1.</strong> Preparing for the trip</div></li><li class="chapter-item expanded "><div><strong aria-hidden="true">6.2.</strong> Calling UEFI runtime services in a kernel</div></li></ol></li><li class="chapter-item expanded "><div><strong aria-hidden="true">7.</strong> Secure Boot</div></li><li class="chapter-item expanded affix "><div>Appendix A: Compiling a C/C++ UEFI application</div></li><li class="chapter-item expanded affix "><div>Appendix B: ...and doing it in other languages</div></li></ol>
             </div>
             <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
         </nav>
@@ -145,16 +145,28 @@
 
                 <div id="content" class="content">
                     <main>
-                        <h1 id="introduction"><a class="header" href="#introduction">Introduction</a></h1>
+                        <h1 id="quick-overview-of-uefi"><a class="header" href="#quick-overview-of-uefi">Quick overview of UEFI</a></h1>
+<p>UEFI, or the <em>Unified Extensible Firmware Interface</em>, is a standardization of computer firmware. It's meant to replace old firmware designs, often referred to as the <em>legacy BIOS</em> or just the BIOS. There are many good reasons to get rid of the legacy stuff. The BIOS wasn't really standardized, its behavior varied across vendors, it required starting the bootloader in what's effectively an 8086 compatbility mode, and it abstracted hardware in a really poor way. The list of complaints can just keep growing.</p>
+<p>This specification tries to replace the BIOS with a well defined specification, allowing for programming in C or a C compatible language, and in general just being less of a pain... or at least that's the theory. In reality UEFI has a lot of issues, we still have cases of behavior varying between vendors, and whatever else. Criticisms of UEFI surely deserve a dedicated chapter.</p>
+<p>UEFI is a rather complex piece of firmware. It specifies support for a lot of potential features, starting with basic runtime utilities, ending at a whole network stack. The UEFI specification is <strong>large</strong>, with UEFI 2.9 reaching over 2500 pages of length for just the base specification — most of it being code descriptions of various protocols.</p>
+<p>Explaining every single supported functionality would be impossible to do here, but once you get confident enough with UEFI, you should be able to comfortably read API specifications for built-in protocols.</p>
+<blockquote>
+<p><strong>UEFI or EFI?</strong></p>
+<p>UEFI started off as just EFI, or the <em>Extensible Firmware Interface</em>. At some point, it transitioned into UEFI we have today. Nowadays, both names refer to basically the same thing.</p>
+</blockquote>
+<h2 id="boot-manager"><a class="header" href="#boot-manager">Boot Manager</a></h2>
+<h2 id="uefi-shell"><a class="header" href="#uefi-shell">UEFI shell</a></h2>
+<h2 id="core-protocols-and-services"><a class="header" href="#core-protocols-and-services">Core protocols and services</a></h2>
+<h2 id="uefi-executables"><a class="header" href="#uefi-executables">UEFI executables</a></h2>
 
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
                         <!-- Mobile navigation buttons -->
-
-                            <a rel="next" href="1-QuickOverviewOfUEFI.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                                <i class="fa fa-angle-right"></i>
+                            <a rel="prev" href="Introduction.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
                             </a>
+
 
                         <div style="clear: both"></div>
                     </nav>
@@ -162,10 +174,10 @@
             </div>
 
             <nav class="nav-wide-wrapper" aria-label="Page navigation">
-
-                    <a rel="next" href="1-QuickOverviewOfUEFI.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
-                        <i class="fa fa-angle-right"></i>
+                    <a rel="prev" href="Introduction.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
                     </a>
+
             </nav>
 
         </div>
