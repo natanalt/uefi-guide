@@ -1,5 +1,9 @@
 name: Deploy the book
 on: [push]
+
+env:
+  CARGO_TERM_COLOR: always
+
 jobs:
   build-and-deploy:
     concurrency: ci-${{ github.ref }}
@@ -16,7 +20,7 @@ jobs:
           path: ~/.cargo/bin/mdbook
 
       - name: Install mdbook
-        run: cargo install mdbook
+        run: cargo install mdbook | true
 
       - name: Build the book
         run: mdbook build
